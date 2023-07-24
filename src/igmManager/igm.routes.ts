@@ -9,7 +9,7 @@ const evaluateErrorCode = (error: { [key: string]: any; code: ERROR_CODES }, res
     case ERROR_CODES.ROUTE_NOT_VALID:
       return res.sendStatus(404);
     default:
-      return res.json(500).json('Something went wrong');
+      return res.json(500).json({ message: 'Something went wrong' });
   }
 };
 

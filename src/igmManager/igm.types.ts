@@ -8,10 +8,10 @@ export enum IGM_ROUTES {
 }
 
 export enum ERROR_CODES {
-  ROUTE_NOT_VALID,
+  ROUTE_NOT_VALID = 'ROUTE_NOT_VALID',
 }
 
-export type DOMAINS = 'RETAIL' | 'MOBILITY';
+export type DOMAINS = 'RETAIL' | 'MOBILITY' | 'LOGISTICS';
 
 export type NP_TYPES = 'BUYER' | 'SELLER';
 
@@ -35,9 +35,7 @@ export interface IssuesParamaters<T = any, K = any> {
   npType: NP_TYPES[];
   context: IssueParameterContext[];
   onSuccess?: {
-    [k in IgmRoutes]: (args: T) => any;
+    [k in IgmRoutes]?: (args: T) => any;
   };
-  onError?: {
-    [k in IgmRoutes]: (args: K) => any;
-  };
+  onError?: (args: K) => any;
 }
