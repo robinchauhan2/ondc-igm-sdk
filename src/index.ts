@@ -1,3 +1,3 @@
-import router from './igmManager/igm.routes';
+import router from './igmManager/routes/igm.routes';
 
 export { router as issueRoutes };

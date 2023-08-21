@@ -13,7 +13,7 @@ export enum ERROR_CODES {
 
 export type DOMAINS = 'RETAIL' | 'MOBILITY' | 'LOGISTICS';
 
-export type NP_TYPES = 'BUYER' | 'SELLER';
+export type NP_TYPES = 'BUYER' | 'SELLER' | 'LOGISTICS';
 
 export type IgmRoutes = IGM_ROUTES.ISSUE | IGM_ROUTES.ON_ISSUE | IGM_ROUTES.ISSUE_STATUS | IGM_ROUTES.ON_ISSUE_STATUS;
 
@@ -27,6 +27,13 @@ export interface IssueParameterContext {
   subscriberType: NP_TYPES;
   subscriberId: string;
   subscriberURL: string;
+  subscriberDomain: string;
+  subscriberCountry: string;
+  subcriberState: string;
+  subscriberCity: string;
+  expected_response_time: string;
+  expected_resolution_time: string;
+  ttl: string;
 }
 
 export interface IssuesParamaters<T = any, K = any> {
