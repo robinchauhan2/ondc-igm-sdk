@@ -43,16 +43,16 @@ class HttpRequest {
    */
   async send() {
     try {
-      let headers = {
+      const headers = {
         ...this.headers,
-        ...(this.method.toLowerCase() != 'get' && {
+        ...(this.method.toLowerCase() !== 'get' && {
           'Content-Type': 'application/json',
         }),
       };
 
       let result;
 
-      if (this.method.toLowerCase() == 'get') {
+      if (this.method.toLowerCase() === 'get') {
         result = await axios({
           baseURL: this.baseUrl,
           url: this.url,
