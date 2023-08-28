@@ -18,10 +18,18 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/robin-chauhan1/ondc-igm-sdk"
+    "url": "https://github.com/robinchauhan2/ondc-igm-sdk.git"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "ONDC",
+    "IGM",
+    "V1.0.0",
+    "SDK",
+    "NodeJs",
+    "javascript",
+    "typescript"
+  ],
+  "author": "Robin Chauhan",
   "license": "ISC",
   "devDependencies": {
     "@types/express": "^4.17.17",
