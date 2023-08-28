@@ -66,7 +66,7 @@ class HttpRequest {
           baseURL: this.baseUrl,
           url: this.url,
           method: this.method,
-          headers: headers,
+          headers,
           timeout: 180000, // If the request takes longer than `timeout`, the request will be aborted.
           data: JSON.stringify(this.data),
         });
