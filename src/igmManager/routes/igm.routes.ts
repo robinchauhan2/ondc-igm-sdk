@@ -35,7 +35,7 @@ const evaluateErrorCode = (error: { [key: string]: any; code: ERROR_CODES }, res
 router.post('/:route(issue|on_issue|issue_status|on_issue_status)', (req, res) => {
   // Extract the 'route' from the request parameters and cast it to the 'IgmRoutes' type.
 
-  const route: IgmRoutes = <IGM_ROUTES>req.params.route;
+  const route: IgmRoutes = req.params.route as IGM_ROUTES;
 
   // If 'issue.config' is not available, throw an error indicating that IGM has not been initialized.
   if (!issue.config) throw new Error('IGM has not been initialised');

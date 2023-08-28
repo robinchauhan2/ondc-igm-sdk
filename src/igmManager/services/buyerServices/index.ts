@@ -13,7 +13,6 @@ import { hasResolvedAction } from '../../../utils/commonFunction';
 class BuyerServices {
   constructor() {
     this.issue = this.issue.bind(this);
-    ``;
   }
 
   /**
