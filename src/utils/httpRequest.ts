@@ -73,17 +73,6 @@ class HttpRequest {
       }
       return result;
     } catch (err: any) {
-      if (err.response) {
-        // The client was given an error response (5xx, 4xx)
-        console.info('Error response', err, '\n', err.response);
-      } else if (err.request) {
-        // The client never received a response, and the request was never left
-        console.info('Error request', err, '\n', err.request);
-      } else {
-        // Anything else
-        console.info('Error message', err, '\n', err.message);
-      }
-
       throw err;
     }
   }

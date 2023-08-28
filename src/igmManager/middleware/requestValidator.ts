@@ -34,7 +34,6 @@ function validateRequest(req: Request, res: Response, next: NextFunction) {
     validationError = validateSchema({ url: req.originalUrl, requestedBody: req.body });
 
     if (validationError) {
-      console.log('error :', validationError.message);
       return res.status(400).json({ Response: [], message: 'Invalid payload data', error: validationError.message });
     }
   }

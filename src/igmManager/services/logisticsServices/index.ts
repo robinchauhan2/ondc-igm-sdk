@@ -137,9 +137,9 @@ class LogisticsServices {
   }
 
   async on_issue(payload: any) {
-    let on_issue_payload;
+    let onIssuePayload;
     if (!hasResolvedAction(payload.message.issue.issue_actions.respondent_actions)) {
-      on_issue_payload = {
+      onIssuePayload = {
         context: {
           ttl: payload.context.ttl,
           domain: payload.context.domain,
@@ -168,7 +168,7 @@ class LogisticsServices {
         },
       };
     } else if (hasRefundKey(payload)) {
-      on_issue_payload = {
+      onIssuePayload = {
         context: {
           ttl: payload.context.ttl,
           domain: IssueInstance.config?.context[0].subscriberDomain!,
@@ -228,7 +228,7 @@ class LogisticsServices {
         },
       };
     } else {
-      on_issue_payload = {
+      onIssuePayload = {
         context: {
           ttl: payload.context.ttl,
           domain: IssueInstance.config?.context[0].subscriberDomain!,
@@ -291,7 +291,7 @@ class LogisticsServices {
     try {
       const response: AxiosResponse = await postApi({
         baseUrl: payload.context.bap_uri,
-        data: on_issue_payload,
+        data: onIssuePayload,
         endpoint: '/on_issue_status',
         method: 'POST',
       });
@@ -300,18 +300,17 @@ class LogisticsServices {
         return response;
       }
 
-      return { payload: on_issue_payload, status: response.status, message: 'Something went wrong' };
+      return { payload: onIssuePayload, status: response.status, message: 'Something went wrong' };
     } catch (e) {
       return e;
     }
   }
 
   async on_issue_status(payload: any) {
-    console.log('🚀 ~ file: index.ts:310 ~ LogisticsServices ~ on_issue_status ~ payload:', payload);
-    let on_issue_payload;
+    let onIssuePayload;
 
     if (hasResolvedAction(payload.message.issue.issue_actions.respondent_actions)) {
-      on_issue_payload = {
+      onIssuePayload = {
         context: {
           ttl: payload.context.ttl,
           domain: payload.context.domain,
@@ -366,7 +365,7 @@ class LogisticsServices {
         },
       };
     } else {
-      on_issue_payload = {
+      onIssuePayload = {
         context: {
           ttl: payload.context.ttl,
           domain: payload.context.domain,
@@ -399,7 +398,7 @@ class LogisticsServices {
     try {
       const response: AxiosResponse = await postApi({
         baseUrl: payload.context.bap_uri,
-        data: on_issue_payload,
+        data: onIssuePayload,
         endpoint: '/on_issue_status',
         method: 'POST',
       });
@@ -408,7 +407,7 @@ class LogisticsServices {
         return response;
       }
 
-      return { payload: on_issue_payload, status: response.status, message: 'Something went wrong' };
+      return { payload: onIssuePayload, status: response.status, message: 'Something went wrong' };
     } catch (e) {
       return e;
     }

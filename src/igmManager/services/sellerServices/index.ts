@@ -252,7 +252,7 @@ class SellerService {
   }
 
   async on_issue_post(payload: OnIssuePayloadProps) {
-    const on_issue_payload: OnIssue = {
+    const onIssuePayload: OnIssue = {
       context: {
         domain: IssueInstance.config?.context[0].subscriberDomain!,
         country: IssueInstance.config?.context[0].subscriberCountry!,
@@ -282,7 +282,7 @@ class SellerService {
     try {
       const response: AxiosResponse = await postApi({
         baseUrl: payload.context.bap_uri,
-        data: on_issue_payload,
+        data: onIssuePayload,
         endpoint: '/on_issue',
         method: 'POST',
       });
@@ -291,7 +291,7 @@ class SellerService {
         return response;
       }
 
-      return { payload: on_issue_payload, status: response.status, message: 'Something went wrong' };
+      return { payload: onIssuePayload, status: response.status, message: 'Something went wrong' };
     } catch (e) {
       return e;
     }
@@ -432,11 +432,11 @@ class SellerService {
   }
 
   async on_issue_status_post(payload: any) {
-    let on_issue_payload: OnIssue | OnIssueStatusResoloved;
+    let onIssuePayload: OnIssue | OnIssueStatusResoloved;
     const respondent_action = payload.message.issue.issue_actions.respondent_actions;
 
     if (respondent_action.some((item: any) => item.respondent_action === 'RESOLVED') && hasRefundKey(payload)) {
-      on_issue_payload = {
+      onIssuePayload = {
         context: {
           domain: IssueInstance.config?.context[0].subscriberDomain!,
           country: IssueInstance.config?.context[0].subscriberCountry!,
@@ -494,7 +494,7 @@ class SellerService {
         },
       };
     } else {
-      on_issue_payload = {
+      onIssuePayload = {
         context: {
           domain: IssueInstance.config?.context[0].subscriberDomain!,
           country: IssueInstance.config?.context[0].subscriberCountry!,
@@ -525,7 +525,7 @@ class SellerService {
     try {
       const response: AxiosResponse = await postApi({
         baseUrl: payload.context.bap_uri,
-        data: on_issue_payload,
+        data: onIssuePayload,
         endpoint: '/on_issue_status',
         method: 'POST',
       });
@@ -534,7 +534,7 @@ class SellerService {
         return response;
       }
 
-      return { payload: on_issue_payload, status: response.status, message: 'Something went wrong' };
+      return { payload: onIssuePayload, status: response.status, message: 'Something went wrong' };
     } catch (e) {
       return e;
     }

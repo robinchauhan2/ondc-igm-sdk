@@ -19,7 +19,7 @@ class IGMController {
     try {
       igmServices.issue(req, res);
     } catch (err) {
-      console.log(err);
+      throw err;
     }
   }
 
@@ -27,7 +27,7 @@ class IGMController {
     try {
       igmServices.on_issue(req, res);
     } catch (err) {
-      console.log(err);
+      throw err;
     }
   }
 
@@ -35,7 +35,7 @@ class IGMController {
     try {
       igmServices.issue_status(req, res);
     } catch (err) {
-      console.log(err);
+      throw err;
     }
   }
 
@@ -43,7 +43,7 @@ class IGMController {
     try {
       igmServices.on_issue_status(req, res);
     } catch (err) {
-      console.log(err);
+      throw err;
     }
   }
 }

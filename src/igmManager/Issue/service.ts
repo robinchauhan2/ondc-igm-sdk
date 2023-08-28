@@ -75,7 +75,6 @@ class Issues {
       }
     } catch (err: any) {
       const errPayload = { message: err?.message, code: ERROR_CODES.ROUTE_NOT_VALID };
-      console.log('here', this.config?.onError);
       if (this.config?.onError) this.config?.onError(errPayload);
       return { ...errPayload, error: true };
     }
