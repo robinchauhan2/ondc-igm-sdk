@@ -118,7 +118,6 @@ export type IssueRequest = ChangeFields<
     >;
   }
 >;
- 
 
 // use this for /on_issue_status when Seller has RESOLVED the issue
 

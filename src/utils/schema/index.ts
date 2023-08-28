@@ -3,7 +3,7 @@ import OnIssueSchema from './on_issue.schema';
 import { OnIssueStatusScehma, OnIssueStatusResolovedSchema } from './OnIssueStatus.schema';
 import IssueStatusSchema from './issueStatus.scehma';
 import LogisticOnIssueSchema from './logistics.onIssue.schema';
-import LogisticsIssueSchema from './logistics.issue.schema'
+import LogisticsIssueSchema from './logistics.issue.schema';
 
 export {
   IssueSchema,
@@ -12,5 +12,5 @@ export {
   OnIssueStatusResolovedSchema,
   IssueStatusSchema,
   LogisticOnIssueSchema,
-  LogisticsIssueSchema
+  LogisticsIssueSchema,
 };
