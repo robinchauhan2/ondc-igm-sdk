@@ -3,11 +3,11 @@ import igmController from '../controller/igm.controller';
 import BuyerManager from '../manager/buyer';
 import { RouteSpecificManagerProps } from '../interfaces/manager.type';
 import SellerManager from '../manager/seller';
-import LogisticsServices from '../services/logisticsServices';
+import LogisticsManager from '../manager/logistics';
 
 const buyerManager = new BuyerManager();
 const sellerManager = new SellerManager();
-const logisticsService = new LogisticsServices();
+const logisticsManager = new LogisticsManager();
 
 class Issues {
   config: IssuesParamaters | undefined;
@@ -81,34 +81,71 @@ class Issues {
     return { success: true };
   }
 
+  /**
+   * Delegate a buyer issue to the BuyerManager.
+   * @param issue - The issue to be managed.
+   * @param onError - Callback for error handling.
+   * @param onNack - Callback for nack handling.
+   * @param onSuccess - Callback for success handling.
+   */
   buyerIssue({ issue, onError, onNack, onSuccess }: RouteSpecificManagerProps) {
     return buyerManager.issue({ issue, onError, onNack, onSuccess });
   }
 
+  /**
+   * Delegate a seller on_issue to the SellerManager.
+   * @param on_issue - The on_issue data to be managed.
+   */
   sellerOnIssue({ on_issue, onError, onNack, onSuccess }: RouteSpecificManagerProps) {
     return sellerManager.on_issue({ on_issue, onError, onNack, onSuccess });
   }
 
+  /**
+   * Delegate a buyer issue_status to the BuyerManager.
+   * @param issue_status - The issue_status data to be managed.
+   */
   buyerIsseStatus({ issue_status, onError, onNack, onSuccess }: RouteSpecificManagerProps) {
     return buyerManager.issue_status({ issue_status, onError, onNack, onSuccess });
   }
 
+  /**
+   * Delegate a seller on_issue_status to the SellerManager.
+   * @param on_issue_status - The on_issue_status data to be managed.
+   */
   sellerOnIssueStatus({ on_issue_status, onError, onNack, onSuccess }: RouteSpecificManagerProps) {
     return sellerManager.on_issue_status({ on_issue_status, onError, onNack, onSuccess });
   }
 
+  /**
+   * Delegate a seller issue to the logistics manager.
+   * @param issue - The issue data to be managed.
+   */
   issueSellerToLogisitics({ issue, onError, onNack, onSuccess }: RouteSpecificManagerProps) {
     return sellerManager.logistics_issue({ issue, onError, onNack, onSuccess });
   }
+
+  /**
+   * Delegate a seller issue_status to the logistics manager.
+   * @param issue_status - The issue_status data to be managed.
+   */
   issueStatusSellerToLogisitics({ issue_status, onError, onNack, onSuccess }: RouteSpecificManagerProps) {
     return sellerManager.logistics_issue_status({ issue_status, onError, onNack, onSuccess });
   }
 
+  /**
+   * Delegate an on_issue to the logistics manager from a buyer perspective.
+   * @param on_issue - The on_issue data to be managed.
+   */
   onIssueFromLogisitics({ on_issue, onError, onNack, onSuccess }: RouteSpecificManagerProps) {
-    return logisticsService.on_issue({ on_issue, onError, onNack, onSuccess });
+    return logisticsManager.on_issue({ on_issue, onError, onNack, onSuccess });
   }
+
+  /**
+   * Delegate an on_issue_status to the logistics manager from a buyer perspective.
+   * @param on_issue_status - The on_issue_status data to be managed.
+   */
   onIssueStatusFromLogistics({ on_issue_status, onError, onNack, onSuccess }: RouteSpecificManagerProps) {
-    return logisticsService.on_issue_status({ on_issue_status, onError, onNack, onSuccess });
+    return logisticsManager.on_issue_status({ on_issue_status, onError, onNack, onSuccess });
   }
 }
 
