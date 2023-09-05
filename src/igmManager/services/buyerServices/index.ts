@@ -99,7 +99,7 @@ class BuyerServices {
 
       const isOnIssueSchemaValid = SchemaValidator({ schema: OnIssueSchema, data: issueRequestpayload });
 
-      if (isOnIssueSchemaValid) {
+      if (isOnIssueSchemaValid && IssueInstance.config?.validateSchema) {
         if (IssueInstance.config?.onError) {
           IssueInstance.config?.onError({
             payload: issueRequestpayload,
@@ -214,7 +214,7 @@ class BuyerServices {
         isOnIssueSchemaValid = SchemaValidator({ schema: OnIssueStatusScehma, data: issueRequestpayload });
       }
 
-      if (isOnIssueSchemaValid) {
+      if (isOnIssueSchemaValid && IssueInstance.config?.validateSchema) {
         if (IssueInstance.config?.onError) {
           IssueInstance.config?.onError({
             payload: issueRequestpayload,

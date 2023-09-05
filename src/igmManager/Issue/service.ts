@@ -29,43 +29,43 @@ class Issues {
     try {
       switch (route) {
         case IGM_ROUTES.ISSUE:
-          // TO-DO: split validation logic in different function
+          //split validation logic in different function
 
           if (!(this.config?.npType.includes('SELLER') || this.config?.npType.includes('LOGISTICS')))
             throw new Error('issue endpoint cannot be hosted if NP is not seller');
           igmController.issue({ req, res });
 
-          // TO-DO: split post-callback action in different function
+          //split post-callback action in different function
           if (this.config.onSuccess?.[IGM_ROUTES.ISSUE]) {
             this.config.onSuccess?.[IGM_ROUTES.ISSUE]('');
           }
           break;
         case IGM_ROUTES.ON_ISSUE:
-          // TO-DO: split validation logic in different function
+          //split validation logic in different function
           if (!this.config?.npType.includes('BUYER'))
             throw new Error('on_issue endpoint cannot be hosted if NP is not buyer');
           igmController.on_issue(req, res);
-          // TO-DO: split post-callback action in different function
+          //split post-callback action in different function
           if (this.config.onSuccess?.[IGM_ROUTES.ON_ISSUE]) {
             this.config.onSuccess?.[IGM_ROUTES.ON_ISSUE]('');
           }
           break;
         case IGM_ROUTES.ISSUE_STATUS:
-          // TO-DO: split validation logic in different function
+          //split validation logic in different function
           if (!(this.config?.npType.includes('SELLER') || this.config?.npType.includes('LOGISTICS')))
             throw new Error('issue_status endpoint cannot be hosted if NP is not seller');
           igmController.issue_status(req, res);
-          // TO-DO: split post-callback action in different function
+          //split post-callback action in different function
           if (this.config.onSuccess?.[IGM_ROUTES.ISSUE_STATUS]) {
             this.config.onSuccess?.[IGM_ROUTES.ISSUE_STATUS]('');
           }
           break;
         case IGM_ROUTES.ON_ISSUE_STATUS:
-          // TO-DO: split validation logic in different function
+          //split validation logic in different function
           if (!this.config?.npType.includes('BUYER'))
             throw new Error('on_issue_status endpoint cannot be hosted if NP is not buyer');
           igmController.on_issue_status(req, res);
-          // TO-DO: split post-callback action in different function
+          //split post-callback action in different function
           if (this.config.onSuccess?.[IGM_ROUTES.ON_ISSUE_STATUS]) {
             this.config.onSuccess?.[IGM_ROUTES.ON_ISSUE_STATUS]('');
           }
@@ -104,7 +104,7 @@ class Issues {
    * Delegate a buyer issue_status to the BuyerManager.
    * @param issue_status - The issue_status data to be managed.
    */
-  buyerIsseStatus({ issue_status, onError, onNack, onSuccess }: RouteSpecificManagerProps) {
+  buyerIssueStatus({ issue_status, onError, onNack, onSuccess }: RouteSpecificManagerProps) {
     return buyerManager.issue_status({ issue_status, onError, onNack, onSuccess });
   }
 

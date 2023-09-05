@@ -23,7 +23,7 @@ class SellerService {
 
       const isIssueSchemaValid = SchemaValidator({ schema: IssueSchema, data: issueRequestpayload });
 
-      if (isIssueSchemaValid) {
+      if (isIssueSchemaValid && IssueInstance.config?.validateSchema) {
         if (IssueInstance.config?.onError) {
           IssueInstance.config?.onError({
             payload: issueRequestpayload,
@@ -193,7 +193,7 @@ class SellerService {
 
       const isOnIssueSchemaValid = SchemaValidator({ schema: LogisticOnIssueSchema, data: issueRequestpayload });
 
-      if (isOnIssueSchemaValid) {
+      if (isOnIssueSchemaValid && IssueInstance.config?.validateSchema) {
         if (IssueInstance.config?.onError) {
           IssueInstance.config?.onError({
             payload: issueRequestpayload,
@@ -303,7 +303,7 @@ class SellerService {
 
       const isIssueSchemaValid = SchemaValidator({ schema: IssueStatusSchema, data: issueRequestpayload });
 
-      if (isIssueSchemaValid) {
+      if (isIssueSchemaValid && IssueInstance.config?.validateSchema) {
         if (IssueInstance.config?.onError) {
           IssueInstance.config?.onError({
             payload: issueRequestpayload,

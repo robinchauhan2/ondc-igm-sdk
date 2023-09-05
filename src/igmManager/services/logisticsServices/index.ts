@@ -14,7 +14,7 @@ class LogisticsServices {
 
       const isIssueSchemaValid = SchemaValidator({ schema: LogisticsIssueSchema, data: issueRequestpayload });
 
-      if (isIssueSchemaValid) {
+      if (isIssueSchemaValid && IssueInstance.config?.validateSchema) {
         if (IssueInstance.config?.onError) {
           IssueInstance.config?.onError({
             payload: issueRequestpayload,
@@ -78,7 +78,7 @@ class LogisticsServices {
 
       const isIssueSchemaValid = SchemaValidator({ schema: IssueStatusSchema, data: issueRequestpayload });
 
-      if (isIssueSchemaValid) {
+      if (isIssueSchemaValid && IssueInstance.config?.validateSchema) {
         if (IssueInstance.config?.onError) {
           IssueInstance.config?.onError({
             payload: issueRequestpayload,
