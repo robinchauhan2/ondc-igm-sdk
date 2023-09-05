@@ -433,7 +433,7 @@ class SellerService {
 
   async on_issue_status_post(payload: any) {
     let onIssuePayload: OnIssue | OnIssueStatusResoloved;
-    const respondentAction = payload.message.issue.issue_actions.respondentActions;
+    const respondentAction = payload.message.issue.issue_actions.respondent_actions;
 
     if (respondentAction.some((item: any) => item.respondentAction === 'RESOLVED') && hasRefundKey(payload)) {
       onIssuePayload = {

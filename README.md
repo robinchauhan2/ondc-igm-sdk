@@ -25,8 +25,7 @@ The IGM Service Package is designed to handle various interactions related to is
 
 You can install the IGM Service Package using npm:
 
-```
-bash
+```bash
 npm install igm-service-package
 
 ```
@@ -757,6 +756,7 @@ issue.init({
 }
 ```
 
-## Thanks to:
 
-* [Abhijeet Singh Rathor](https://github.com/AbhijeetWits)
+## Contributions
+
+* [@AbhijeetWits](https://github.com/AbhijeetWits)
