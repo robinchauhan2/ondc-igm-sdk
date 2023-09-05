@@ -2,6 +2,14 @@
 
 The Issue & Grievance Management (IGM) Service Package provides a mechanism for resolving issues between users of the ONDC network. The IGM flow is built on the Issue & Grievance Management framework, which facilitates the resolution of issues, grievances, and disputes between a Complainant and Respondent while ensuring transparency, fairness, and data security.
 
+## Content
+
+- [Introduction](#Introduction)
+- [Features](#Features)
+- [Installation](#Installation)
+- [PropTypes](#PropTypes)
+- [Usage](#Usage)
+
 ## Introduction
 
 The IGM Service Package is designed to handle various interactions related to issue management, resolution, and status tracking within the ONDC network. It allows participants to raise, process, and track issues involving transactions, logistics services, and other identified entities.
@@ -25,7 +33,7 @@ npm install igm-service-package
 
 ## PropTypes
 
-### `init()`
+#### `init()`
 
 | Property         | Type              | Default                     | Description                       |
 | ---------------- | ----------------- | --------------------------- | --------------------------------- |
@@ -53,7 +61,7 @@ Each object within the `context` array should have the following properties:
 | `ttl`                      | String | Time to live for the context.                     |
 | `subscriberState`          | String | The state where the subscriber is located.        |
 
-### `buyerIssue()`
+#### `buyerIssue()`
 
 | Property    | Type              | Default | Description                                           |
 | ----------- | ----------------- | ------- | ----------------------------------------------------- |
@@ -62,7 +70,7 @@ Each object within the `context` array should have the following properties:
 | `onSuccess` | Callback Function | N/A     | Handling the Success Responses.                       |
 | `onError`   | Callback Function | N/A     | Handling the Error Responses.                         |
 
-### `buyerIssueStatus()`
+#### `buyerIssueStatus()`
 
 | Property       | Type              | Default | Description                          |
 | -------------- | ----------------- | ------- | ------------------------------------ |
@@ -71,7 +79,7 @@ Each object within the `context` array should have the following properties:
 | `onSuccess`    | Callback Function | N/A     | Handling the Success Responses.      |
 | `onError`      | Callback Function | N/A     | Handling the Error Responses.        |
 
-### `sellerOnIssue()`
+#### `sellerOnIssue()`
 
 | Property    | Type              | Default | Description                          |
 | ----------- | ----------------- | ------- | ------------------------------------ |
@@ -80,7 +88,7 @@ Each object within the `context` array should have the following properties:
 | `onSuccess` | Callback Function | N/A     | Handling the Success Responses.      |
 | `onError`   | Callback Function | N/A     | Handling the Error Responses.        |
 
-### `sellerOnIssueStatus()`
+#### `sellerOnIssueStatus()`
 
 | Property          | Type              | Default | Description                             |
 | ----------------- | ----------------- | ------- | --------------------------------------- |
@@ -89,7 +97,7 @@ Each object within the `context` array should have the following properties:
 | `onSuccess`       | Callback Function | N/A     | Handling the Success Responses.         |
 | `onError`         | Callback Function | N/A     | Handling the Error Responses.           |
 
-### `issueSellerToLogisitics()`
+#### `issueSellerToLogisitics()`
 
 | Property    | Type              | Default | Description                                                      |
 | ----------- | ----------------- | ------- | ---------------------------------------------------------------- |
@@ -98,7 +106,7 @@ Each object within the `context` array should have the following properties:
 | `onSuccess` | Callback Function | N/A     | Handling the Success Responses.                                  |
 | `onError`   | Callback Function | N/A     | Handling the Error Responses.                                    |
 
-### `issueStatusSellerToLogisitics()`
+#### `issueStatusSellerToLogisitics()`
 
 | Property       | Type              | Default | Description                                        |
 | -------------- | ----------------- | ------- | -------------------------------------------------- |
@@ -107,7 +115,7 @@ Each object within the `context` array should have the following properties:
 | `onSuccess`    | Callback Function | N/A     | Handling the Success Responses.                    |
 | `onError`      | Callback Function | N/A     | Handling the Error Responses.                      |
 
-### `onIssueFromLogisitics()`
+#### `onIssueFromLogisitics()`
 
 | Property    | Type              | Default | Description                         |
 | ----------- | ----------------- | ------- | ----------------------------------- |
@@ -116,7 +124,7 @@ Each object within the `context` array should have the following properties:
 | `onSuccess` | Callback Function | N/A     | Handling the Success Responses.     |
 | `onError`   | Callback Function | N/A     | Handling the Error Responses.       |
 
-### `onIssueStatusFromLogistics()`
+#### `onIssueStatusFromLogistics()`
 
 | Property          | Type              | Default | Description                                |
 | ----------------- | ----------------- | ------- | ------------------------------------------ |
@@ -127,7 +135,7 @@ Each object within the `context` array should have the following properties:
 
 # Usage
 
-### For Buyer
+#### For Buyer
 
 ```javascript
 import { issue } from 'ondc-igm-sdk';
@@ -154,13 +162,72 @@ issue.init({
     on_issue: (value) => console.log('logging from on_issue callback', value),
     on_issue_status: (value) => console.log('logging from on_issue_status callback', value),
   },
-  onError: (error) => {
-    logger.info({ message: 'Here!', labels: { key: 'value' } });
-    logger.info('welp');
-    // console.log(logger.transports);
-    console.log(error);
-  },
+  onError: (error) => console.log(error),
 });
+```
+
+#### For Seller
+
+```bash
+
+issue.init({
+  validateSchema: true,
+  npType: ['SELLER', 'BUYER'],
+  context: [
+    {
+      subscriberId: '<example-subscriber-id>',
+      subscriberType: 'BUYER',
+      subscriberURL: '<example-subscriber-url>',
+      expected_resolution_time: 'rfrff',
+      expected_response_time: '3434343',
+      subscriberCity: 'IND',
+      subscriberCountry: '0378',
+      subscriberDomain: '<example-subscriber-domain>',
+      ttl: 'PH239',
+      subcriberState: '3434',
+    },
+  ],
+  domain: ['RETAIL', 'LOGISTICS'],
+  onSuccess: {
+    issue: (value) => console.log('logging from seller on issue callback', value),
+    issue_status: (value) => console.log('logging from seller issue status callback', value),
+    on_issue: (value) => console.log('logging from seller on issue callback', value),
+    on_issue_status: (value) => console.log('logging from seller on issue status callback', value),
+  },
+  onError: (error) => console.log(error),
+})
+
+```
+
+#### For Logistics
+
+```bash
+
+issue.init({
+  validateSchema: true,
+  npType: ['LOGISTICS'],
+  context: [
+    {
+      subscriberId: '<example-subscriber-id>',
+      subscriberType: 'BUYER',
+      subscriberURL: '<example-subscriber-url>',
+      expected_resolution_time: 'rfrff',
+      expected_response_time: '3434343',
+      subscriberCity: 'IND',
+      subscriberCountry: '0378',
+      subscriberDomain: '<example-subscriber-domain>',
+      ttl: 'PH239',
+      subcriberState: '3434',
+    },
+  ],
+  domain: ['RETAIL'],
+  onSuccess: {
+    issue: (value) => console.log('logging from logistics issue callback', value),
+    issue_status: (value) => console.log('logging from logistics issue_status callback', value),
+  },
+  onError: (error) => console.log(error),
+})
+
 ```
 
 #### buyerIssue({ issue, onError, onNack, onSuccess }: RouteSpecificManagerProps)
@@ -175,8 +242,7 @@ issue.init({
 
 - **Issue Schema**:
 
-```
-bash
+```bash
 {
     "context": {
         "bpp_id": "<example-bpp_id>",
@@ -192,8 +258,8 @@ bash
                     "name": "Sam Manuel"
                 },
                 "contact": {
-                    "phone": "9879879870",
-                    "email": "sam@yahoo.com"
+                    "phone": "9xxxxxxxxx",
+                    "email": "<example.mail.com>"
                 }
             },
             "order_details": {
@@ -248,8 +314,8 @@ bash
                                 "name": "buyerapp.com::ONDC:RET10"
                             },
                             "contact": {
-                                "phone": "9450394039",
-                                "email": "buyerapp@interface.com"
+                                "phone": "9xxxxxxxxx",
+                                "email": "<example.mail.com>"
                             },
                             "person": {
                                 "name": "John Dode"
@@ -265,7 +331,7 @@ bash
 }
 ```
 
-### sellerOnIssue({ on_issue, onError, onNack, onSuccess }: RouteSpecificManagerProps)
+#### sellerOnIssue({ on_issue, onError, onNack, onSuccess }: RouteSpecificManagerProps)
 
 - **Description**: This function delegates the management of a seller's issue to the `SellerManager`.
 - **Parameters**:
@@ -277,8 +343,7 @@ bash
 
 - **On_Issue Schema**:
 
-```
-bash
+```bash
    {
     "context": {
         "bap_id":"<example-bap_id>",
@@ -299,14 +364,14 @@ bash
                         "updated_at": "2023-07-28T08:14:14.641Z",
                         "updated_by": {
                             "contact": {
-                                "email": "robin.chauhan@gmail.com",
-                                "phone": "9876543210"
+                                "email": "<example.mail.com>",
+                                "phone": "9xxxxxxxxx"
                             },
                             "org": {
                                 "name": "https://fe48-115-240-127-98.ngrok-free.app::nic2004:52110"
                             },
                             "person": {
-                                "name": "Robin Chauhan"
+                                "name": "<example>"
                             }
                         }
                     }
@@ -318,7 +383,7 @@ bash
 }
 ```
 
-### buyerIssueStatus({ issue_status, onError, onNack, onSuccess }: RouteSpecificManagerProps)
+#### buyerIssueStatus({ issue_status, onError, onNack, onSuccess }: RouteSpecificManagerProps)
 
 - **Description**: This function delegates the management of a buyer's issue status to the `BuyerManager`.
 - **Parameters**:
@@ -330,8 +395,7 @@ bash
 
 - **Issue_Status Schema**:
 
-```
-bash
+```bash
 {
   "context":
   {
@@ -349,7 +413,7 @@ bash
 }
 ```
 
-### sellerOnIssueStatus({ on_issue_status, onError, onNack, onSuccess }: RouteSpecificManagerProps)
+#### sellerOnIssueStatus({ on_issue_status, onError, onNack, onSuccess }: RouteSpecificManagerProps)
 
 - **Description**: This function delegates the management of a seller's issue status to the `SellerManager`.
 - **Parameters**:
@@ -361,8 +425,7 @@ bash
 
 - **On_Issue_Status Seller Schema**:
 
-```
-bash
+```bash
 {
     "context": {
         "bap_id": "<example-bap_id>",
@@ -385,8 +448,8 @@ bash
                                 "name": "sellerapp.com::ONDC:RET10"
                             },
                             "contact": {
-                                "phone": "9450394140",
-                                "email": "respondentapp@respond.com"
+                                "phone": "9xxxxxxxxx",
+                                "email": "<example.mail.com>"
                             },
                             "person": {
                                 "name": "Jane Doe"
@@ -403,8 +466,8 @@ bash
                                 "name": "sellerapp.com::ONDC:RET10"
                             },
                             "contact": {
-                                "phone": "9450394140",
-                                "email": "respondentapp@respond.com"
+                                "phone": "9xxxxxxxxx",
+                                "email": "<example.mail.com>"
                             },
                             "person": {
                                 "name": "Jane Doe"
@@ -424,8 +487,8 @@ bash
                             "name": "sellerapp.com::ONDC:RET10"
                         },
                         "contact": {
-                            "phone": "9059304940",
-                            "email": "email@resolutionproviderorg.com"
+                            "phone": "9xxxxxxxxx",
+                            "email": "<example.mail.com>"
                         },
                         "person": {
                             "name": "resolution provider org contact person name"
@@ -434,8 +497,8 @@ bash
                     "resolution_support": {
                         "chat_link": "http://chat-link/respondent",
                         "contact": {
-                            "phone": "9949595059",
-                            "email": "respondantemail@resolutionprovider.com"
+                            "phone": "9xxxxxxxxx",
+                            "email": "<example.mail.com>"
                         },
                         "gros": [
                             {
@@ -443,8 +506,8 @@ bash
                                     "name": "Sam D"
                                 },
                                 "contact": {
-                                    "phone": "9605960796",
-                                    "email": "email@gro.com"
+                                    "phone": "9xxxxxxxxx",
+                                    "email": "<example.mail.com>"
                                 },
                                 "gro_type": "TRANSACTION-COUNTERPARTY-NP-GRO"
                             }
@@ -463,7 +526,7 @@ bash
 }
 ```
 
-### issueSellerToLogisitics({ issue, onError, onNack, onSuccess }: RouteSpecificManagerProps)
+#### issueSellerToLogisitics({ issue, onError, onNack, onSuccess }: RouteSpecificManagerProps)
 
 - **Description**: This function delegates the management of a seller's issue to the logistics manager.
 - **Parameters**:
@@ -475,8 +538,7 @@ bash
 
 - **Issue Seller to Logistics Schema**:
 
-```
-bash
+```bash
 {
     "context": {
         "domain":"0030433",
@@ -496,8 +558,8 @@ bash
                     "name": "Sam Manuel"
                 },
                 "contact": {
-                    "phone": "9879879870",
-                    "email": "sam@yahoo.com"
+                    "phone": "9xxxxxxxxx",
+                    "email": "<example.mail.com>"
                 }
             },
             "order_details": {
@@ -553,8 +615,8 @@ bash
                                 "name": "buyerapp.com::ONDC:RET10"
                             },
                             "contact": {
-                                "phone": "9450394039",
-                                "email": "buyerapp@interface.com"
+                                "phone": "9xxxxxxxxx",
+                                "email": "<example.mail.com>"
                             },
                             "person": {
                                 "name": "John Dode"
@@ -572,8 +634,8 @@ bash
                                 "name": "sellerapp.com::ONDC:RET10"
                             },
                             "contact": {
-                                "phone": "9450394140",
-                                "email": "respondentapp@respond.com"
+                                "phone": "9xxxxxxxxx",
+                                "email": "<example.mail.com>"
                             },
                             "person": {
                                 "name": "Jane Doe"
@@ -590,8 +652,8 @@ bash
                                 "name": "sellerapp.com::ONDC:RET10"
                             },
                             "contact": {
-                                "phone": "9450394140",
-                                "email": "respondentapp@respond.com"
+                                "phone": "9xxxxxxxxx",
+                                "email": "<example.mail.com>"
                             },
                             "person": {
                                 "name": "Jane Doe"
@@ -607,7 +669,7 @@ bash
 }
 ```
 
-### issueStatusSellerToLogisitics({ issue_status, onError, onNack, onSuccess }: RouteSpecificManagerProps)
+#### issueStatusSellerToLogisitics({ issue_status, onError, onNack, onSuccess }: RouteSpecificManagerProps)
 
 - **Description**: This function delegates the management of a seller's issue status to the logistics manager.
 - **Parameters**:
@@ -619,8 +681,7 @@ bash
 
 - **Issue_Status Seller To Logistics Schema**:
 
-```
-bash
+```bash
 {
     "context": {
         "domain": "0030433",
@@ -640,7 +701,7 @@ bash
 
 ```
 
-### onIssueFromLogisitics({ on_issue, onError, onNack, onSuccess }: RouteSpecificManagerProps)
+#### onIssueFromLogisitics({ on_issue, onError, onNack, onSuccess }: RouteSpecificManagerProps)
 
 - **Description**: This function delegates the management of an on_issue to the logistics manager from a buyer perspective.
 - **Parameters**:
@@ -652,8 +713,7 @@ bash
 
 - **On_Issue Logistics Schema**:
 
-```
-bash
+```bash
 {
     "context": {
         "domain": "0030433",
@@ -678,14 +738,14 @@ bash
                         "updated_at": "2023-07-28T08:14:14.641Z",
                         "updated_by": {
                             "contact": {
-                                "email": "robin.chauhan@gmail.com",
-                                "phone": "9876543210"
+                                "email": "<example.mail.com>",
+                                "phone": "9xxxxxxxxx"
                             },
                             "org": {
                                 "name": "https://fe48-115-240-127-98.ngrok-free.app::nic2004:52110"
                             },
                             "person": {
-                                "name": "Robin Chauhan"
+                                "name": "<example>"
                             }
                         }
                     }
@@ -696,3 +756,7 @@ bash
     }
 }
 ```
+
+## Thanks to:
+
+* [Abhijeet Singh Rathor](https://github.com/AbhijeetWits)

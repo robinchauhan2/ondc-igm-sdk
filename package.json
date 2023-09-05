@@ -4,7 +4,7 @@
   "description": "ONDC official IGM Package",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
-  "homepage": "https://github.com/robin-chauhan1/ondc-igm-sdk",
+  "homepage": "https://github.com/robinchauhan2/ondc-igm-sdk.git",
   "scripts": {
     "test": "jest --config jestconfig.json",
     "build": "tsc",
