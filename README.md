@@ -26,7 +26,7 @@ The IGM Service Package is designed to handle various interactions related to is
 You can install the IGM Service Package using npm:
 
 ```bash
-npm install igm-service-package
+npm i ondc-igm-sdk
 
 ```
 
