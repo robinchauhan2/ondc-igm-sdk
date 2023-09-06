@@ -50,7 +50,7 @@ Each object within the `context` array should have the following properties:
 | Property                   | Type   | Description                                       |
 | -------------------------- | ------ | ------------------------------------------------- |
 | `subscriberId`             | String | A unique identifier for the subscriber.           |
-| `subscriberType`           | String | The type of the subscriber (e.g., BUYER, SELLER). |
+| `subscriberType`           | String | The type of the subscriber (e.g., BUYER, SELLER, LOGISTICS). |
 | `subscriberURL`            | String | The URL of the subscriber.                        |
 | `expected_resolution_time` | String | The expected resolution time.                     |
 | `expected_response_time`   | String | The expected response time.                       |
@@ -147,12 +147,12 @@ issue.init({
       subscriberId: '<example-subscriber-id>',
       subscriberType: 'BUYER',
       subscriberURL: '<example-subscriber-url>',
-      expected_resolution_time: 'rfrff',
-      expected_response_time: '3434343',
-      subscriberCity: 'IND',
+      expected_resolution_time: 'P1D',,
+      expected_response_time: 'PT2H',,
+      subscriberCity: 'BNN',
       subscriberCountry: '0378',
       subscriberDomain: '<example-subscriber-domain>',
-      ttl: 'PH239',
+      ttl: 'PT1H',
       subcriberState: '3434',
     },
   ],
@@ -167,7 +167,7 @@ issue.init({
 
 #### For Seller
 
-```bash
+```javascript
 
 issue.init({
   validateSchema: true,
@@ -177,12 +177,12 @@ issue.init({
       subscriberId: '<example-subscriber-id>',
       subscriberType: 'BUYER',
       subscriberURL: '<example-subscriber-url>',
-      expected_resolution_time: 'rfrff',
-      expected_response_time: '3434343',
+      expected_resolution_time: 'P1D',,
+      expected_response_time: 'PT2H',,
       subscriberCity: 'IND',
       subscriberCountry: '0378',
       subscriberDomain: '<example-subscriber-domain>',
-      ttl: 'PH239',
+      ttl: 'PT1H',
       subcriberState: '3434',
     },
   ],
@@ -200,7 +200,7 @@ issue.init({
 
 #### For Logistics
 
-```bash
+```javascript
 
 issue.init({
   validateSchema: true,
@@ -210,12 +210,12 @@ issue.init({
       subscriberId: '<example-subscriber-id>',
       subscriberType: 'BUYER',
       subscriberURL: '<example-subscriber-url>',
-      expected_resolution_time: 'rfrff',
-      expected_response_time: '3434343',
+      expected_resolution_time: 'P1D',,
+      expected_response_time: 'PT2H',,
       subscriberCity: 'IND',
       subscriberCountry: '0378',
       subscriberDomain: '<example-subscriber-domain>',
-      ttl: 'PH239',
+      ttl: 'PT1H',
       subcriberState: '3434',
     },
   ],
